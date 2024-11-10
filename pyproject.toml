@@ -1,0 +1,21 @@
+[project]
+name = "dqn"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
+    "ipykernel>=6.29.5",
+    "tqdm>=4.67.0",
+    "ale-py>=0.10.1",
+    "pandas>=2.2.3",
+    "matplotlib>=3.9.2",
+    "opencv-python>=4.10.0.84",
+    "stable-baselines3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
