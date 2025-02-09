@@ -1,4 +1,66 @@
 # Implementation of DQN (2013) and DRQN (2015)
+---------------------------
+
+To run the repo ensure that you have the following libraries installed. 
+
+```
+tqdm 
+torch
+ale
+gymnasium
+numpy
+matplotlib
+stable_baselines3
+```
+If you have `uv` installed you can just run the following command. 
+
+```
+uv venv
+source .venv/bin/activate # .venv\Scripts\activate on Win
+uv sync
+```
+
+--------------------------
+
+To train an agent please run 
+
+```
+python src/main.py 
+```
+The possible CLI arguments include: 
+
+USAGE:
+```bash
+python src/main.py [FLAGS] [OPTIONS]
+
+OPTIONS:
+
+-s, --steps <integer>        Number of steps to run during training. (Default: 1000000)
+-save, --save <integer>      The step at which to save the model. (Default: 500000)
+-l, --lr <float>             Learning rate for training. (Default: 2.5e-4)
+-c, --C <integer>            Frequency (in steps) to update the target network. (Default: 1000)
+-cap, --capacity <integer>   Capacity of the experience replay buffer. (Default: 100000)
+-p, --preload <integer>      Number of experiences to preload into the buffer. (Default: 10000)
+-f, --freq <integer>         Frequency (in frames) at which a training update is performed. (Default: 4)
+-fsteps, --finalsteps <integer>  Step count at which epsilon and learning rate decay stop. (Default: 500000)
+-b, --batch <integer>        Batch size used during training. (Default: 64)
+-d, --discount <float>       Discount factor (gamma) used in Q-learning. (Default: 0.95)
+-m, --model <string>         Model type to train (e.g., "DQN"). (Default: "DQN")
+-e, --env <string>           Atari game environment to run (e.g., "PongNoFrameskip-v4"). (Default: "PongNoFrameskip-v4")
+-dc, --decaystart <integer>  Step at which to begin epsilon decay. (Default: 0)
+-dev, --device <string>      Device on which to run training (e.g., "cuda" or "cpu"). (Default: "cuda")
+
+
+```
+
+---------------------------
+The models are named with the number of timesteps in mind i.e. `pong_dqn_best_6M` indicates that the agent was trained for 6 million steps. 
+
+### Examples
+
+![image info](/media/pong.gif)
+
+![image info](/media/breakout.gif)
 
 --------------------------
 ## References 
