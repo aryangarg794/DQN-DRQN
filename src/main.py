@@ -21,7 +21,7 @@ parser.add_argument('-c', '--C', type=int, default=1000, help='when to update th
 parser.add_argument('-cap', '--capacity', type=int, default=100000, help='capacity of the experience replay')
 parser.add_argument('-p', '--preload', type=int, default=10000, help='amount of experience to preload in the buffer ')
 parser.add_argument('-f', '--freq', type=int, default=4, help='at which frame to do update step')
-parser.add_argument('-fsteps', '--finalsteps', type=int, default=500000, help='when to stop the epsilon and lr decay')
+parser.add_argument('-fsteps', '--finalsteps', type=int, default=500000, help='when to stop the epsilon')
 parser.add_argument('-b', '--batch', type=int, default=64, help='batch size')
 parser.add_argument('-d', '--discount', type=float, default=0.95, help='discount factor')
 parser.add_argument('-m', '--model', type=str, default='DQN', help='model to train')
@@ -90,7 +90,6 @@ if __name__ == "__main__":
         decay_start=args.decaystart,
         C=args.C,
         device=device,
-        scheduler_step=args.finalsteps,
         save_step=args.save 
     )
     

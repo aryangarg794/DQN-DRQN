@@ -16,7 +16,6 @@ def train(
     batch_size, 
     decay_start,
     C,
-    scheduler_step,
     gamma=0.99,
     device='cuda',
     save_step=850000,
@@ -25,8 +24,6 @@ def train(
     start_time = time.time()
     episode_count = 0
     best_avg_reward = -float('inf')
-    
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=scheduler_step, gamma=0.5)
     
     obs, _ = env.reset()
     
