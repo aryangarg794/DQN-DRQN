@@ -53,8 +53,6 @@ def train(
             loss.backward()
             optimizer.step()
             
-        scheduler.step()
-            
         if step > decay_start: 
             q_network.epsilon_decay(step)
             target_network.epsilon_decay(step)

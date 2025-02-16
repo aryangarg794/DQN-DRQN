@@ -62,6 +62,12 @@ The models are named with the number of timesteps in mind i.e. `pong_dqn_best_6M
 
 ![image info](/media/breakout.gif)
 
+
+----------------------------
+## DRQN 
+
+DRQN was trained on Cartpole instead of Atari (Atari code still present) due to computational limits. 
+
 --------------------------
 ## References 
 [1] Mnih, Volodymyr. "Playing atari with deep reinforcement learning." arXiv preprint arXiv:1312.5602 (2013).\

@@ -1,5 +1,5 @@
 [project]
-name = "dqn"
+name = "models"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -16,6 +16,7 @@ dependencies = [
     "stable-baselines3>=2.3.2",
     "scikit-learn>=1.6.0",
     "seaborn>=0.13.2",
+    "minatar>=1.0.15",
 ]
 
 [build-system]
