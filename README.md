@@ -66,7 +66,9 @@ The models are named with the number of timesteps in mind i.e. `pong_dqn_best_6M
 ----------------------------
 ## DRQN 
 
-DRQN was trained on Cartpole instead of Atari (Atari code still present) due to computational limits. 
+DRQN was trained on Cartpole instead of Atari (Atari code still present) due to computational limits. Partial observability done by randomly masking certain elements of the state space. 
+
+![image info](/media/train2.png)
 
 --------------------------
 ## References 
