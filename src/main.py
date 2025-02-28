@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 
 from models.dqn import DQN
-from utils.replay import load_buffer, MetricTracker
+from utils.replay import ReplayBuffer, MetricTracker, make_env
 from utils.train import train
 
 import warnings
@@ -63,10 +63,13 @@ if __name__ == "__main__":
         padding_item = (terminal_width - len(setting_text)) // 2
         print(' ' * padding_item + setting_text) 
         
-    print_block(f'Loading Buffer...')
-    buffer, env = load_buffer(preload, capacity, game=atari_env, device=device)
     
     if model_name == 'DQN':
+        print_block(f'Loading Buffer...')
+        env = make_env(game=atari_env)
+        buffer = ReplayBuffer(capacity, device=device)
+        buffer.load(env, preload)
+    
         q_model = DQN(env, decay_steps=args.finalsteps).to(device)
         target_model = DQN(env, decay_steps=args.finalsteps).to(device)
         target_model.load_state_dict(q_model.state_dict())

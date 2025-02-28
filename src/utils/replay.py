@@ -73,30 +73,27 @@ class ReplayBuffer:
 
     def __setitem__(self, index, value: tuple):
         self._buffer[index] = value
+        
+    def load(self, env, preload):
 
+        observation, _ = env.reset()
+        for _ in tqdm(range(preload)):    
+            action = env.action_space.sample()
 
-def load_buffer(preload, capacity, game, *, device):
-    env = make_env(game)
-    buffer = ReplayBuffer(capacity,device=device)
+            observation_prime, reward, terminated, truncated, _ = env.step(action)
+            self.store((
+                observation.squeeze(), 
+                action, 
+                reward, 
+                observation_prime.squeeze(), 
+                terminated or truncated))
+            observation = observation_prime
 
-    observation, _ = env.reset()
-    for _ in tqdm(range(preload)):    
-        action = env.action_space.sample()
-
-        observation_prime, reward, terminated, truncated, _ = env.step(action)
-        buffer.store((
-            observation.squeeze(), 
-            action, 
-            reward, 
-            observation_prime.squeeze(), 
-            terminated or truncated))
-        observation = observation_prime
-
-        done = terminated or truncated
-        if done:
-            observation, _ = env.reset()
-       
-    return buffer, env
+            done = terminated or truncated
+            if done:
+                observation, _ = env.reset()
+        
+        return env
 
 
 class MetricTracker:
